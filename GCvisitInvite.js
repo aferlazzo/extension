@@ -3,7 +3,6 @@
 
 // Content scripts are JavaScript files that run in the context of web pages.
 
-
 var articleParent = document.getElementById('maindetails_center_bottom');
 var myArticle = document.createElement("div");
 
@@ -17,36 +16,16 @@ myArticle.setAttribute('class', 'article');
 $('#saapArticle').html("<h2>Visit your favorite places in <span>Ocean's Eleven</span></h2> \
 <ul id='saapSlider'> \
   <li> \
-    <div class='left'> \
-      <img src='pic_velvet1.jpg' width='600' height='200' /> \
-    </div> \
-    <div class='right'> \
-      <div class='band'>The Velvet Underground</div> \
-    </div> \
+    <div id='pic1'></div> \
   </li> \
   <li> \
-    <div class='left'> \
-      <img src='pic_velvet2.jpg' width='600' height='200' /> \
-    </div> \
-    <div class='right'> \
-      <div class='band'>The Velvet Underground</div> \
-    </div> \
+    <div id='pic2'></div> \
   </li> \
   <li> \
-    <div class='left'> \
-      <img src='pic_velvet3.jpg' width='600' height='200' /> \
-    </div> \
-    <div class='right'> \
-      <div class='band'>The Velvet Underground</div> \
-    </div> \
+    <div id='pic3'></div> \
   </li> \
   <li> \
-    <div class='left'> \
-      <img src='pic_velvet4.jpg' width='600' height='200' /> \
-    </div> \
-    <div class='right'> \
-      <div class='band'>The Velvet Underground</div> \
-    </div> \
+     <div id='pic4'></div> \
   </li> \
 </ul>");
 

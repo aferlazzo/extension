@@ -4,3 +4,23 @@ height:235px;
 #saapArticle span{
 font-style:italic;
 }
+#pic1{
+ width:600px;
+ height:200px;
+ background-image:url('chrome-extension://__MSG_@@extension_id__/images/pic1.jpg');
+}
+#pic2{
+ width:600px;
+ height:200px;
+ background-image:url('chrome-extension://__MSG_@@extension_id__/images/pic2.jpg');
+}
+#pic3{
+ width:600px;
+ height:200px;
+ background-image:url('chrome-extension://__MSG_@@extension_id__/images/pic3.jpg');
+}
+#pic4{
+ width:600px;
+ height:200px;
+ background-image:url('chrome-extension://__MSG_@@extension_id__/images/pic4.jpg');
+}
