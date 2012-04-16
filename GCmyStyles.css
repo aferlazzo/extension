@@ -4,23 +4,73 @@ height:235px;
 #saapArticle span{
 font-style:italic;
 }
+#saapArticle h2{
+margin-left: 90px;
+}
+#saapSlider{
+width:570px;
+}
 #pic1{
- width:600px;
+ width:570px;
  height:200px;
  background-image:url('chrome-extension://__MSG_@@extension_id__/images/pic1.jpg');
 }
 #pic2{
- width:600px;
+ width:570px;
  height:200px;
  background-image:url('chrome-extension://__MSG_@@extension_id__/images/pic2.jpg');
 }
 #pic3{
- width:600px;
+ width:570px;
  height:200px;
  background-image:url('chrome-extension://__MSG_@@extension_id__/images/pic3.jpg');
 }
 #pic4{
- width:600px;
+ width:570px;
  height:200px;
  background-image:url('chrome-extension://__MSG_@@extension_id__/images/pic4.jpg');
+}
+.bx-wrapper {
+	width:590px;
+	margin: 0 auto;
+}
+
+.bx-prev {
+	position: absolute;
+	top: 100px;
+	left: -35px;
+	width: 31px;
+	height: 31px;
+	text-indent: -999999px;
+	background: url('chrome-extension://__MSG_@@extension_id__/images/icon_arrow_left.png') no-repeat 0 -31px;
+}
+
+.bx-next {
+	position: absolute;
+	top: 100px;
+	left: 575px;
+	width: 31px;
+	height: 31px;
+	text-indent: -999999px;
+	background: url('chrome-extension://__MSG_@@extension_id__/images/icon_arrow_right.png') no-repeat 0 -31px;
+}
+
+.bx-next:hover,
+.bx-prev:hover {
+	background-position: 0 0;
+}
+.bx-start{
+	top: -20px;
+	left: 300px;
+	color: #F1EEE7;
+font-size: 14px;
+background: #838383;
+padding: 4px 7px;
+border-radius: 3px;
+text-decoration: none;
+text-transform: capitalize;
+}
+.bx-start:hover {
+background: #525044;
+text-decoration: none;
 }
