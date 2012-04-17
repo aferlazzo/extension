@@ -3,13 +3,12 @@
 	"version": "1.0",
 	"manifest_version": 1,
 	"description": "This tool is used to demo SAAP functionality.",
-	"options_page": "options.html",
 	"background_page": "background.html",
 	"content_scripts": [
     {
       "matches": ["http://www.imdb.com/*/", "http://www.facebook.com/*/", "http://www.amazon.com/*/" ],
       "css": ["GCmystyles.css"],
-      "js": ["jquery.min.js", "jquery.bxSlider.min.js", "jquery.easing.1.3.js", "GCvisitInvite.js"]
+      "js": ["jquery.min.js", "jquery.bxSlider.min.js", "GCvisitInvite.js"]
     }
   ],
 	"permissions": [
