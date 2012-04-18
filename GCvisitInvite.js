@@ -8,7 +8,12 @@
 	  console.log(response.farewell);
 	});
 
-	var iconColor = 'red';	// by default assume the extension background preocess is not loaded
+	var iconColor = 'red',	// by default assume the extension background preocess is not loaded
+		movieName = "",
+		wWidth = $('#root').width(),   // returns width of browser viewport
+		theHotelChooser = "";
+
+
 	// send a request message to background task for iconColor
 	chrome.extension.sendRequest({greeting: "iconColor"}, function(response) {
 		iconColor = response.farewell;
@@ -31,50 +36,80 @@
 		}
 	});  
 
-
-
-
-	var wWidth = $('#root').width();   // returns width of browser viewport
+	// booking overlay logic
+	
 	$('<div id="bookingOverlay"></div>').insertBefore('#nb20');
 	
-	$('.closeIcon').click(function(){
+	$('body').on("click", '.closeIcon', function(e){
+		e.preventDefault();
 		$('#bookingOverlay').css({'display': 'none'});
 	});
+		
+	// scroll to the top of page when the booking overlay is dispayed
 	
-	var theHotelChooser = "<h1>Experience Ocean's Eleven on Location</h1>\
-	<div class='closeIcon'></div>\
-	<h3>Hotels are based on proximity to the filming location.</h3> \
-	<div id='hotelMap'></div> \
-	<div class='twoUp'><h2>hotel name</h2></div>\
-	<div class='twoUp' id='hotelRate'><h2>$98/night</h2></div>\
-	";
-	
-	$('#bookingOverlay').html(theHotelChooser);
 	$("body").on("click", '.flightPage', function(e){
 		e.preventDefault();
 		$('#bookingOverlay').css('display', 'block');
 		window.scrollTo(0, 0);
 	});
 
-
-
-
-
+	// inject code into the imdb page to display the slider of pictures and to book a flight
+	
 	function injectCode() {
 		var articleParent = document.getElementById('maindetails_center_bottom'),
 			myArticle = document.createElement('div'),
 			// Get a reference to the first child and in sert our article here
-			theFirstChild = articleParent.firstChild;
+			theFirstChild = articleParent.firstChild, mmm, i, j;
 			
 		articleParent.insertBefore(myArticle, theFirstChild);
 		// Add attributes to the new article
 		myArticle.setAttribute('id', 'saapArticle');
 		myArticle.setAttribute('class', 'article');
+				
+		// get the movie name using the h1 text, without the year info or sub-title info
+		mmm = $('h1.header').clone()
+            .children()
+            .remove()
+            .end()
+            .text();
+		//console.log(mmm);
+		movieName="";
 		
-		
-			
+		for (var i=0; i< mmm.length; i++){
+			if(mmm.charAt(i) == "(") {
+				i += 6;
+			} else {
+				if(mmm.charAt(i) != "\n"){
+					movieName += mmm[i];
+					//console.log('Now: '+movieName);
+				}
+			}
+		}
+		console.log('|'+movieName+'|');		
 
-		$('#saapArticle').html("<h2>Visit your favorite places in <span>Ocean's Eleven</span></h2> \
+		/*
+		console.log(movieName.split(""));
+		
+		for(var i=0;i<movieName.length; i++)
+			console.log(movieName.charCodeAt(i));
+		
+		console.log('|'+movieName+'|');		
+		*/
+		
+		// prepare string for booking overlay
+		
+		theHotelChooser = "<h1>Experience "+movieName+" on Location</h1>\
+		<div class='closeIcon'></div>\
+		<h3>Hotels are based on proximity to the filming location.</h3> \
+		<div id='hotelMap'></div> \
+		<div class='twoUp'><h2>hotel name</h2></div>\
+		<div class='twoUp' id='hotelRate'><h2>$98/night</h2></div>\
+		";
+		
+		$('#bookingOverlay').html(theHotelChooser);
+
+
+		$('#saapArticle').html("<h2>Visit your favorite places in <span>"+movieName+"</span></h2> \
 		<ul id='saapSlider'> \
 		  <li> \
 			<div id='pic1'></div> \
@@ -98,10 +133,13 @@
 			<a href id='GCbookButton' class='flightPage'>Book Now</a> &#187; \
 		</div>");
 		
+		/* // add the 'book a trip' invitation in the 'Details' (filming locations) section of page  */
 		$('.txt-block').eq(11)
 			.append("<br><a href id='detailBooking' class='flightPage'>Book a Trip to these Locations</a> &#187;");
 
 
+		// options for slider controls
+		
 		$('#saapSlider').bxSlider({
 			auto: true,
 			autoControls: true,

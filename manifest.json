@@ -12,10 +12,10 @@
     }
   ],
 	"permissions": [
-	"tabs", //to use the windows API declare the "tabs" permission 
+	"tabs", 
 	"http://www.imdb.com/*", "http://www.facebook.com/*", "http://www.amazon.com/*"
 	],
 	"browser_action": {
-	  "default_icon": "iconGreen.png" //, "default_popup": "popup.html"
+	  "default_icon": "iconGreen.png"
 	}
 }
