@@ -6,7 +6,7 @@
 	"background_page": "background.html",
 	"content_scripts": [
     {
-      "matches": ["http://www.imdb.com/*/", "http://www.facebook.com/*/", "http://www.amazon.com/*/" ],
+      "matches": ["http://www.imdb.com/title/*/*", "http://www.facebook.com/*/", "http://www.amazon.com/*/" ],
       "css": ["GCmystyles.css"],
       "js": ["jquery.min.js", "jquery.bxSlider.min.js", "GCvisitInvite.js"]
     }

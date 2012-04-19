@@ -2,24 +2,45 @@
 (function (){
 	console.log('content 1 - visitInvite.js start');
 
+	var iconColor = 'red',	// by default assume the extension background preocess is not loaded
+		movieName = "",
+		wWidth = $('#root').width(),   // returns width of browser viewport
+		theHotelChooser = "",
+		nameStart=0, nameEnd=0,
+		pageName,
+		photoPage;
+
 
 	// send a request message to background task
 	chrome.extension.sendRequest({greeting: "hello"}, function(response) {
 	  console.log(response.farewell);
 	});
 
-	var iconColor = 'red',	// by default assume the extension background preocess is not loaded
-		movieName = "",
-		wWidth = $('#root').width(),   // returns width of browser viewport
-		theHotelChooser = "";
-
 
 	// send a request message to background task for iconColor
 	chrome.extension.sendRequest({greeting: "iconColor"}, function(response) {
 		iconColor = response.farewell;
 		console.log('icon color is ' + iconColor);
-		if (iconColor === 'green'){
-			injectCode();
+		
+		//is this a photos page?
+		if (location.href.lastIndexOf('/') !=-1) {
+			// Check whether '/' exists.
+			nameStart = location.href.lastIndexOf('/')+1;
+			
+			nameEnd=location.href.length;
+
+			pageName=location.href.substring(nameStart,nameEnd);
+			
+			photoPage = pageName == 'mediaindex' ? true : false;
+			console.log('url: '+ location.href + ' pageName: "'+pageName+'" photoPage: ' + photoPage);
+		}
+		
+		// inject code
+		if (iconColor === 'green'){	
+			if(photoPage == true)
+				injectPhotoInvites();
+			else
+				injectCode();
 		}
 	});
 	// listen for requests
@@ -36,7 +57,7 @@
 		}
 	});  
 
-	// booking overlay logic
+	// booking overlay logic for movie page
 	
 	$('<div id="bookingOverlay"></div>').insertBefore('#nb20');
 	
@@ -52,13 +73,28 @@
 		$('#bookingOverlay').css('display', 'block');
 		window.scrollTo(0, 0);
 	});
+	
+	// prepare string for booking overlay
+		
+	function createBookingOverlay(movieName){
+		theHotelChooser = "<h1>Experience "+movieName+" on Location</h1>\
+		<div class='closeIcon'></div>\
+		<h3>Hotels are based on proximity to the filming location.</h3> \
+		<div id='hotelMap'></div> \
+		<div class='twoUp'><h2>hotel name</h2></div>\
+		<div class='twoUp' id='hotelRate'><h2>$98/night</h2></div>\
+		";
+		
+		$('#bookingOverlay').html(theHotelChooser);
+	}
+
 
 	// inject code into the imdb page to display the slider of pictures and to book a flight
 	
 	function injectCode() {
 		var articleParent = document.getElementById('maindetails_center_bottom'),
 			myArticle = document.createElement('div'),
-			// Get a reference to the first child and in sert our article here
+			// Get a reference to the first child and insert our article here
 			theFirstChild = articleParent.firstChild, mmm, i, j;
 			
 		articleParent.insertBefore(myArticle, theFirstChild);
@@ -86,29 +122,8 @@
 			}
 		}
 		console.log('|'+movieName+'|');		
-
-		/*
-		console.log(movieName.split(""));
+		createBookingOverlay(movieName);
 		
-		for(var i=0;i<movieName.length; i++)
-			console.log(movieName.charCodeAt(i));
-		
-		console.log('|'+movieName+'|');		
-		*/
-		
-		// prepare string for booking overlay
-		
-		theHotelChooser = "<h1>Experience "+movieName+" on Location</h1>\
-		<div class='closeIcon'></div>\
-		<h3>Hotels are based on proximity to the filming location.</h3> \
-		<div id='hotelMap'></div> \
-		<div class='twoUp'><h2>hotel name</h2></div>\
-		<div class='twoUp' id='hotelRate'><h2>$98/night</h2></div>\
-		";
-		
-		$('#bookingOverlay').html(theHotelChooser);
-
-
 		$('#saapArticle').html("<h2>Visit your favorite places in <span>"+movieName+"</span></h2> \
 		<ul id='saapSlider'> \
 		  <li> \
@@ -147,5 +162,37 @@
 			captions: true,
 			captionsSelector: '.caption'
 		});
+	}
+	
+	// put visit invites on bottom of photos
+	
+	function injectPhotoInvites(){
+		var existingPhoto, movieName='?';
+		
+		// booking overlay logic for photo page
+		
+		$('<div id="bookingOverlay"></div>').insertBefore('#nb20');
+		
+		$('body').on("click", '.closeIcon', function(e){
+			e.preventDefault();
+			$('#bookingOverlay').css({'display': 'none'});
+		});
+
+		// scroll to the top of page when the booking overlay is dispayed
+		
+		$("body").on("click", '.thumb_list > a > div', function(e){
+			e.preventDefault();
+			$('#bookingOverlay').css('display', 'block');
+			window.scrollTo(0, 0);
+		});
+			
+		// add photo overlays
+		
+		existingPhoto = $('.thumb_list > a').eq(2)
+					.css({'display': 'inline-block', 'height': 102})  // adjust existing anchor
+					.append("<div class='photoOverlay'>Book this location</div>");
+		
+		movieName = ($('#header h1').text()).substr(16);
+		createBookingOverlay(movieName);
 	}
 })();
