@@ -7,10 +7,11 @@
 	"content_scripts": [
     {
       "matches": ["http://www.imdb.com/title/*/*", "http://www.facebook.com/*/", "http://www.amazon.com/*/" ],
-      "css": ["GCmystyles.css"],
-      "js": ["jquery.min.js", "jquery.bxSlider.min.js", "GCvisitInvite.js"]
+      "css": ["GCmystyles.css", "datepicker.css", "layout.css"],
+      "js": ["jquery.min.js", "jquery.bxSlider.min.js", "datepicker.js", "eye.js", "utils.js", "layout.js", "GCvisitInvite.js"]
     }
-  ],
+    ],
+		
 	"permissions": [
 	"tabs", 
 	"http://www.imdb.com/*", "http://www.facebook.com/*", "http://www.amazon.com/*"

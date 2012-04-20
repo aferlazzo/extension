@@ -81,12 +81,27 @@
 		<div class='closeIcon'></div>\
 		<h3>Hotels are based on proximity to the filming location.</h3> \
 		<div id='hotelMap'></div> \
+		<div id='hotelDetail'>\
 		<div class='twoUp'><h2>hotel name</h2></div>\
-		<div class='twoUp' id='hotelRate'><h2>$98/night</h2></div>\
-		";
-		
+		<div class='twoUp' id='hotelRate'><h2>$98/night</h2></div></div>\
+		<div id='input'></div>\
+		<script>\
+		$('#input').DatePicker({\
+		flat: true,\
+		date: ['2008-07-28','2008-07-31'],\
+		current: '2008-07-31',\
+		calendars: 2,\
+		mode: 'range',\
+		starts: 1\
+		});\
+		</script>\
+		";		
 		$('#bookingOverlay').html(theHotelChooser);
 	}
+
+
+
+
 
 
 	// inject code into the imdb page to display the slider of pictures and to book a flight
@@ -188,11 +203,30 @@
 			
 		// add photo overlays
 		
-		existingPhoto = $('.thumb_list > a').eq(2)
+		$('.thumb_list > a').eq(2)
 					.css({'display': 'inline-block', 'height': 102})  // adjust existing anchor
 					.append("<div class='photoOverlay'>Book this location</div>");
+		
+		$('.thumb_list > a').eq(7)
+					.css({'display': 'inline-block', 'height': 102})  // adjust existing anchor
+					.append("<div class='photoOverlay'>Book this location</div>");
+		
+		$('.thumb_list > a').eq(23)
+					.css({'display': 'inline-block', 'height': 102})  // adjust existing anchor
+					.append("<div class='photoOverlay'>Book this location</div>");
+		
+		$('.thumb_list > a').eq(24)
+					.css({'display': 'inline-block', 'height': 102})  // adjust existing anchor
+					.append("<div class='photoOverlay'>Book this location</div>");
+		
+		// get the movie name
 		
 		movieName = ($('#header h1').text()).substr(16);
 		createBookingOverlay(movieName);
 	}
+
+	// ---------------------------------for datepicker -------------------------------------
+	
+	
+	
 })();
