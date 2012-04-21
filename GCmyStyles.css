@@ -90,10 +90,10 @@ a.bx-start{
 	font-weight:700;
 	color: #136CB2;
 }
-#GCbookNow{
-	margin: -40px 0 0 516px;
+#GCexploreNow{
+	margin: -40px 0 0 428px;
 	height:30px;
-	width:100px;
+	width:170px;
 	color: #136CB2;
 }
 #GCbookButton{
@@ -169,12 +169,14 @@ text-align:right;
 position:relative;
 	margin: -25px 0 0 0;
 	top:-17px;
-	color:#fff;
+	color:tan;
 	font-size:12px;
 	text-decoration:none;
 	background-color:rgba(51,51,51, .8);
 	height:40px;
-	line-height:40px;
+	line-height:17px;
+	text-align:center;
 	width:100px;
 }
+.photoOverlay:hover, .photoOverlay:link, .photoOverlay:visited, .photoOverlay:active {text-decoration:none;}
 

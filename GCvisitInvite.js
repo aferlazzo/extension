@@ -35,7 +35,7 @@
 			console.log('url: '+ location.href + ' pageName: "'+pageName+'" photoPage: ' + photoPage);
 		}
 		
-		// inject code
+		// inject photo invites code
 		if (iconColor === 'green'){	
 			if(photoPage == true)
 				injectPhotoInvites();
@@ -43,7 +43,7 @@
 				injectCode();
 		}
 	});
-	// listen for requests
+	// listen for extension background.js message requests
 	chrome.extension.onRequest.addListener(
 	  function(request, sender, sendResponse) {
 		console.log(sender.tab ?
@@ -74,6 +74,17 @@
 		window.scrollTo(0, 0);
 	});
 	
+	
+	
+	$('#dateInput').DatePicker({
+		flat: true,
+		date: ['2008-07-28','2008-07-31'],
+		current: '2008-07-31',
+		calendars: 2,
+		mode: 'range',
+		starts: 1
+		});
+
 	// prepare string for booking overlay
 		
 	function createBookingOverlay(movieName){
@@ -82,19 +93,10 @@
 		<h3>Hotels are based on proximity to the filming location.</h3> \
 		<div id='hotelMap'></div> \
 		<div id='hotelDetail'>\
-		<div class='twoUp'><h2>hotel name</h2></div>\
-		<div class='twoUp' id='hotelRate'><h2>$98/night</h2></div></div>\
-		<div id='input'></div>\
-		<script>\
-		$('#input').DatePicker({\
-		flat: true,\
-		date: ['2008-07-28','2008-07-31'],\
-		current: '2008-07-31',\
-		calendars: 2,\
-		mode: 'range',\
-		starts: 1\
-		});\
-		</script>\
+			<div class='twoUp'><h2>hotel name</h2></div>\
+			<div class='twoUp' id='hotelRate'><h2>$98/night</h2></div>\
+		</div>\
+		<div id='dateInput'></div>\
 		";		
 		$('#bookingOverlay').html(theHotelChooser);
 	}
@@ -104,7 +106,7 @@
 
 
 
-	// inject code into the imdb page to display the slider of pictures and to book a flight
+	// inject code into the imdb page to display the slider of pictures and to 'Explore this location'
 	
 	function injectCode() {
 		var articleParent = document.getElementById('maindetails_center_bottom'),
@@ -117,7 +119,7 @@
 		myArticle.setAttribute('id', 'saapArticle');
 		myArticle.setAttribute('class', 'article');
 				
-		// get the movie name using the h1 text, without the year info or sub-title info
+		// get the movie name using the h1 text, stripping off the year info or sub-title info
 		mmm = $('h1.header').clone()
             .children()
             .remove()
@@ -138,34 +140,31 @@
 		}
 		console.log('|'+movieName+'|');		
 		createBookingOverlay(movieName);
-		
+	
 		$('#saapArticle').html("<h2>Visit your favorite places in <span>"+movieName+"</span></h2> \
 		<ul id='saapSlider'> \
 		  <li> \
 			<div id='pic1'></div> \
-			<div class='caption'>\
 		  </li> \
 		  <li> \
 			<div id='pic2'></div> \
-			<div class='caption'>\
 		  </li> \
 		  <li> \
 			<div id='pic3'></div> \
-			<div class='caption'>\
 		  </li> \
 		  <li> \
 			<div id='pic4'></div> \
-			<div class='caption'>\
 		  </li> \
 		</ul> \
 		<div id='GChotel'>Hotel Nico</div> \
-		<div id='GCbookNow'> \
-			<a href id='GCbookButton' class='flightPage'>Book Now</a> &#187; \
+		<div id='GCexploreNow'> \
+			<a href id='GCbookButton' class='flightPage'>Explore this location</a> &#187; \
 		</div>");
 		
-		/* // add the 'book a trip' invitation in the 'Details' (filming locations) section of page  */
+		// add the 'book a trip' invitation in the 'Details' (filming locations) section of page
+		
 		$('.txt-block').eq(11)
-			.append("<br><a href id='detailBooking' class='flightPage'>Book a Trip to these Locations</a> &#187;");
+			.append("<br><a href id='detailBooking' class='flightPage'>Explore a Trip to this Location</a> &#187;");
 
 
 		// options for slider controls
@@ -205,19 +204,19 @@
 		
 		$('.thumb_list > a').eq(2)
 					.css({'display': 'inline-block', 'height': 102})  // adjust existing anchor
-					.append("<div class='photoOverlay'>Book this location</div>");
+					.append("<div class='photoOverlay'>Explore this location</div>");
 		
 		$('.thumb_list > a').eq(7)
 					.css({'display': 'inline-block', 'height': 102})  // adjust existing anchor
-					.append("<div class='photoOverlay'>Book this location</div>");
+					.append("<div class='photoOverlay'>Explore this location</div>");
 		
 		$('.thumb_list > a').eq(23)
 					.css({'display': 'inline-block', 'height': 102})  // adjust existing anchor
-					.append("<div class='photoOverlay'>Book this location</div>");
+					.append("<div class='photoOverlay'>Explore this location</div>");
 		
 		$('.thumb_list > a').eq(24)
 					.css({'display': 'inline-block', 'height': 102})  // adjust existing anchor
-					.append("<div class='photoOverlay'>Book this location</div>");
+					.append("<div class='photoOverlay'>Explore this location</div>");
 		
 		// get the movie name
 		
