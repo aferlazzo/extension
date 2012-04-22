@@ -1,0 +1,182 @@
+#saapArticle{
+	height:300px;
+}
+#saapArticle span{
+	font-style:italic;
+}
+#saapArticle h2{
+	margin-left: 25px;
+}
+#saapSlider{
+	width:570px;
+	height:190px;
+}
+#pic1{
+	 width:570px;
+	 height:190px;
+	 background-image:url('chrome-extension://__MSG_@@extension_id__/images/pic1.jpg');
+}
+#pic2{
+	 width:570px;
+	 height:190px;
+	 background-image:url('chrome-extension://__MSG_@@extension_id__/images/pic2.jpg');
+}
+#pic3{
+	 width:570px;
+	 height:190px;
+	 background-image:url('chrome-extension://__MSG_@@extension_id__/images/pic3.jpg');
+}
+#pic4{
+	 width:570px;
+	 height:190px;
+	 background-image:url('chrome-extension://__MSG_@@extension_id__/images/pic4.jpg');
+}
+.bx-wrapper {
+	width:590px;
+	margin: 0 auto;
+}
+
+.bx-prev {
+	position: absolute;
+	top: 100px;
+	left: -33px;
+	width: 31px;
+	height: 31px;
+	text-indent: -999999px;
+	background: url('chrome-extension://__MSG_@@extension_id__/images/icon_arrow_left.png') no-repeat 0 -31px;
+}
+
+.bx-next {
+	position: absolute;
+	top: 100px;
+	left: 572px;
+	width: 31px;
+	height: 31px;
+	text-indent: -999999px;
+	background: url('chrome-extension://__MSG_@@extension_id__/images/icon_arrow_right.png') no-repeat 0 -31px;
+}
+
+.bx-next:hover,
+.bx-prev:hover {
+	background-position: 0 0;
+}
+.bx-start{
+	top: -20px;
+	left: 300px;
+	color: #F1EEE7;
+	font-size: 14px;
+	background: #838383;
+	padding: 4px 7px;
+	border-radius: 3px;
+	text-decoration: none;
+	text-transform: capitalize;
+}
+.bx-start:hover {
+	background: #525044;
+	text-decoration: none;
+}
+.bx-auto{
+	margin-top:10px;
+	display:none;
+}
+a.bx-start{
+	color:#fff !important;
+}
+#GChotel{
+	margin: 10px 0 0 25px;
+	height:30px;
+	height:40px;
+	width:150px;
+	font-weight:700;
+	color: #136CB2;
+}
+#GCexploreNow{
+	margin: -40px 0 0 428px;
+	height:30px;
+	width:170px;
+	color: #136CB2;
+}
+#GCbookButton{
+	font-weight:700;
+	color: #70579D;
+}
+#detailBooking{
+	margin-left:143px;
+}
+#bookingOverlay{
+	display:none;
+	background-color:#fff;
+	border: 1px solid #eee;
+	border-radius:20px;
+	z-index:999;
+	padding:25px 35px;
+	position:absolute;
+	width:880px;  /* must also change width in GCvisitInvite.js when injecting bookingOverlay */
+	height:940px;
+	box-shadow: 1px -1px 6px #000;
+	margin:40px;
+}
+.closeIcon{
+	background-image: url('chrome-extension://__MSG_@@extension_id__/images/closeIcon.png');
+	width:64px;
+	height:64px;
+	margin:-70px 0 0 840px;
+	cursor:pointer;
+}
+
+#hotelMap{
+	margin:0 auto;
+	width:800px;
+	height:426px;
+	background-image: url('chrome-extension://__MSG_@@extension_id__/images/bookingMap.png');
+}
+#hotelDetail{
+	margin:0 auto;
+	width:800px;
+	overflow:hidden;
+}
+.twoUp{
+	float:left;
+	width:50%;
+}
+#hotelRate{
+	text-align:right;
+}
+.twoUp h2{
+text-align:left;
+}
+#hotelRate h2{
+text-align:right;
+}
+#bookingOverlay h1 {
+	font-size: 30px;
+	font-family: sans-serif;
+}
+#bookingOverlay h2 {
+	margin: 30px 0;
+	color: #666;
+	font-family: sans-serif;
+	font-size: 26px;
+}
+#bookingOverlay h3 {
+	margin: 20px 0 30px;
+	color: #666;
+	font-family:sans-serif;
+	font-size:18px;
+}
+/* photos are in <div class='thumb_list'><a 100x100><img></a></div> */
+.photoOverlay{
+position:relative;
+	margin: -25px 0 0 0;
+	top:-17px;
+	color:tan;
+	font-size:12px;
+	text-decoration:none;
+	background-color:rgba(51,51,51, .8);
+	height:40px;
+	line-height:17px;
+	text-align:center;
+	width:100px;
+}
+.photoOverlay:hover, .photoOverlay:link, .photoOverlay:visited, .photoOverlay:active {text-decoration:none;}
+

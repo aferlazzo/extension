@@ -6,15 +6,15 @@
 	"background_page": "background.html",
 	"content_scripts": [
     {
-      "matches": ["http://www.imdb.com/title/*/*", "http://www.facebook.com/*/", "http://www.amazon.com/*/" ],
-      "css": ["GCmystyles.css", "datepicker.css", "layout.css"],
-      "js": ["jquery.min.js", "jquery.bxSlider.min.js", "datepicker.js", "eye.js", "utils.js", "layout.js", "GCvisitInvite.js"]
+      "matches": ["http://www.imdb.com/title/*/*", "http://www.amazon.com/*/" ],
+      "css": ["extension.css", "datepicker.css", "layout.css"],
+      "js": ["jquery.min.js", "jquery.bxSlider.min.js", "datepicker.js", "eye.js", "utils.js", "layout.js", "extension.js"]
     }
     ],
 		
 	"permissions": [
 	"tabs", 
-	"http://www.imdb.com/*", "http://www.facebook.com/*", "http://www.amazon.com/*"
+	"http://www.imdb.com/*", "http://www.amazon.com/*"
 	],
 	"browser_action": {
 	  "default_icon": "iconGreen.png"
