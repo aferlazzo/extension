@@ -1,4 +1,5 @@
 //wrap up our code in an anonomous function
+
 (function (){
 	console.log('content 1 - visitInvite.js start');
 
@@ -43,6 +44,11 @@
 				injectCode();
 		}
 	});
+	
+	
+	
+	
+	
 	// listen for extension background.js message requests
 	chrome.extension.onRequest.addListener(
 	  function(request, sender, sendResponse) {
@@ -57,7 +63,10 @@
 		}
 	});  
 
-	// booking overlay logic for movie page
+	
+	
+	
+	// booking overlay logic for movie detail page
 	
 	$('<div id="bookingOverlay"></div>').insertBefore('#nb20');
 	
@@ -75,7 +84,7 @@
 	});
 	
 	
-	
+	// for explore / book overlay 
 	$('#dateInput').DatePicker({
 		flat: true,
 		date: ['2008-07-28','2008-07-31'],
@@ -85,6 +94,7 @@
 		starts: 1
 		});
 
+		
 	// prepare string for booking overlay
 		
 	function createBookingOverlay(movieName){
@@ -106,7 +116,7 @@
 
 
 
-	// inject code into the imdb page to display the slider of pictures and to 'Explore this location'
+	// inject code into the imdb movie page to display the slider of pictures and to 'Explore this location'
 	
 	function injectCode() {
 		var articleParent = document.getElementById('maindetails_center_bottom'),
@@ -178,6 +188,9 @@
 		});
 	}
 	
+	
+	
+	
 	// put visit invites on bottom of photos
 	
 	function injectPhotoInvites(){
@@ -223,9 +236,5 @@
 		movieName = ($('#header h1').text()).substr(16);
 		createBookingOverlay(movieName);
 	}
-
-	// ---------------------------------for datepicker -------------------------------------
-	
-	
 	
 })();

@@ -7,8 +7,10 @@
 	"content_scripts": [
     {
       "matches": ["http://www.imdb.com/title/*/*", "http://www.amazon.com/*/" ],
-      "css": ["extension.css", "datepicker.css", "layout.css"],
-      "js": ["jquery.min.js", "jquery.bxSlider.min.js", "datepicker.js", "eye.js", "utils.js", "layout.js", "extension.js"]
+      //"css": ["content.css"],
+      //"css": ["layout.css"],
+      "css": ["content.css", "datepicker.css", "layout.css"],
+      "js": ["jquery.min.js", "jquery.bxSlider.min.js", "datepicker.js", "eye.js", "utils.js", "layout.js", "content.js"]
     }
     ],
 		
